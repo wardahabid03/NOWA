@@ -20,4 +20,4 @@ This project was created for the Google Solution Challenge. The website helps di
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/your-repo-name.git
+   git clone https://github.com/wardahabid03/NOWA
