@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOWA7</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+</head>
+<body>
+  <header>
+    <nav>
+  
+    <h1 id="NOWA" class="NOWA"><a href="Index.html">NOWA</a></h1>
+
+    <div class="container">
+      <ul>
+        <li class="row navdown"><a href="Index.html">HOME</a></li>
+        <li class="row navdown"><a href="Index.html">ABOUT</a></li>
+        <li class="row navdown"><a href="Index.html">CONTACT US</a></li>
+        <li class="row signUp"><a href="signUp.html">SIGN UP</a></li>
+        <li id ="logout" class="row login"><a href="Index.html">LOG OUT</a></li>
+      </ul>
+   
+  </div>
+</nav>
+</header>
+<main>
+  <div  class="login-page">
+  <!-- <img  class="l-img"src="imgs/login-img.jpg" alt="background img">-->
+<h2 id="status" class="status">Current Status of Food Availability<br><span class="sub-h">(Updated on Daily Basis)</span></h2>
+<br />
+
+<table class="table">
+  <thead>
+    <tr">
+      <th class="tbr">Name</th>
+      <th class="tbr">Food Available</th>
+      <th class="tbr">Timing(PST)</th>
+      <th class="tbr">Location</th>
+      <th class="tbr">Status</th>
+    </tr>
+  </thead>
+  <tbody id="AddTr">
+    <tr>
+      <td class="tbr">KFC</td>
+      <td class="tbr">Patty Burgers</td>
+      <td class="tbr">10:00am-11:00pm</td>
+      <td class="tbr">Rawalpindi,Pakistan</td>
+      <td class="tbr">Delivered</td>
+    </tr>
+    <tr class="tbr">
+      <td class="tbr">Tehzeeb</td>
+      <td class="tbr">Cookies</td>
+      <td class="tbr">8:00pm-11:00pm</td>
+      <td class="tbr">Lahore,Pakistan</td>
+      <td class="tbr">Available for delivery</td>
+    </tr>
+  </tbody>
+</table>
+<div class="B-flex">
+<button class="enter" type="submit" id="enter">Enter Your Status</button>
+<button class="enter" type="submit" id="clear">Clear Table</button>
+</div>
+<h2 id="partners" class="partners">Our Partners</h2>
+<br>
+<div class="partner-img">
+<img src="imgs/partners/p5.jpg" alt="optp logo">
+<br>
+<img src="imgs/partners/p7.jpg" alt="rahat logo">
+<br>
+<img src="imgs/partners/p3.jpg" alt="mwf logo">
+<br>
+<img src="imgs/partners/p4.jpg" alt="tehzeeb logo">
+<br>
+<img src="imgs/partners/p6.jpg" alt="bread logo">
+<br>
+<img src="imgs/partners/Edhi-foundation.png" alt="edhi logo">
+<br>
+<img src="imgs/partners/p2.jpg" alt="kfc logo" height="150px" width="150px">
+<br>
+<img src="imgs/partners/p1.jpg" alt="ak logo">
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+</div>
+</main>
+
+<footer>
+  <div class="footer">
+    <p>&copy; 2023 NOWA. All rights reserved.</p>
+
+    <div class="">
+      <a href="#" class="fa fa-facebook" id="f"></a>
+      <a href="#" class="fa fa-twitter" id="t"></a>
+      <a href="#" class="fa fa-instagram" id="i"></a>
+    </div>
+  </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+  import {getDatabase, set, ref ,push, child, onValue} from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAYpU-sEZyEQUlcfQT_T-N5JXnFgymSQVo",
+    authDomain: "solution-challenge-869c1.firebaseapp.com",
+    databaseURL: "https://solution-challenge-869c1-default-rtdb.firebaseio.com",
+    projectId: "solution-challenge-869c1",
+    storageBucket: "solution-challenge-869c1.appspot.com",
+    messagingSenderId: "463908271523",
+    appId: "1:463908271523:web:6e0d09c32838836d531616"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+  const auth = getAuth();
+
+
+
+
+</script>
+
+
+
+
+<script>
+let c=0;
+ let element=document.getElementsByTagName('button');
+
+// Select the table body where new rows will be added
+const tableBody = document.getElementById("AddTr");
+
+// Select the "Enter Your Status" button
+const enterButton = document.getElementById("enter");
+
+// Listen for the "click" event on the "Enter Your Status" button
+enterButton.addEventListener("click", function() {
+  // Create a new row element
+c++;
+  if(c%2!=0){
+  const newRow = document.createElement("tr");
+
+  // Add editable cells to the new row element
+  for (let i = 0; i < 5; i++) {
+    const newCell = document.createElement("td");
+    newCell.setAttribute("contenteditable", true);
+    newRow.appendChild(newCell);
+  }
+
+  // Add the new row to the table body
+  tableBody.appendChild(newRow);
+
+  // Save the updated table data to local storage
+  // localStorage.setItem("tableData", tableBody.innerHTML);
+
+let TInHtml=tableBody.innerHTML;
+console.log(TInHtml);
+
+
+
+
+
+  element[0].style.backgroundColor="red";
+  element[0].innerHTML="Confirm";
+}
+
+if(c%2==0){
+
+  element[0].style.backgroundColor="rgb(13,30,81)";
+  element[0].innerHTML="Enter Your Status";
+  let edt=document.getElementsByTagName('td');
+  Array.from(edt).forEach(element => {
+    element.contentEditable="false";  
+  });
+
+  
+  }
+
+
+});
+
+// Load any existing table data from local storage and display it in the table
+const savedTableData = localStorage.getItem("tableData");
+if (savedTableData) {
+  tableBody.innerHTML = savedTableData;
+}
+let clear=document.getElementById("clear");
+clear.addEventListener('click',function(){
+
+  tableBody.innerHTML = "";
+  localStorage.removeItem("tableData");
+});
+
+let TD=document.getElementsByTagName("td");
+Array.from(TD).forEach(function(){
+  if(TD.innerHTML=="Delivered"){
+    TD.style.color="red";
+  }
+});
+
+
+
+
+    </script>
+</body>
+</html>

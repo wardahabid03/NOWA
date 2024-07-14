@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOWA3</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+      
+        <h1 id="NOWA" class="NOWA"><a href="Index.html">NOWA</a></h1>
+
+        <div class="container">
+          <ul>
+            <li class="row navdown"><a href="Index.html">HOME</a></li>
+            <li class="row navdown"><a href="Index.html">ABOUT</a></li>
+            <li class="row navdown"><a href="Index.html">CONTACT US</a></li>
+            <li class="row signUp"><a href="signUp.html">SIGN UP</a></li>
+            <li class="row login"><a href="login-page.html">LOG IN</a></li>
+          </ul>
+       
+      </div>
+    </nav>
+    </header>
+
+    <main>
+        <br>
+<h3 id="dealer" class="dealer">Log In</h3>
+<br>
+<form action="#" method="get">
+
+  <div class="Cform">
+
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="email" required><br>
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br>
+    
+    <input  class="logedIn" id="login-btn" type="submit" value="Login">
+
+  </div>
+   
+ 
+</form>
+</main>
+<br>
+<br>
+<br><br>
+<br><br>
+<br><br>
+<footer>
+      <div class="footer">
+        <p>&copy; 2023 NOWA. All rights reserved.</p>
+
+        <div class="">
+          <a href="#" class="fa fa-facebook" id="f"></a>
+          <a href="#" class="fa fa-twitter" id="t"></a>
+          <a href="#" class="fa fa-instagram" id="i"></a>
+         </div>
+      </div>
+    </footer>
+</body>
+
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+  import { getDatabase,set,ref,update} from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAYpU-sEZyEQUlcfQT_T-N5JXnFgymSQVo",
+    authDomain: "solution-challenge-869c1.firebaseapp.com",
+    databaseURL: "https://solution-challenge-869c1-default-rtdb.firebaseio.com",
+    projectId: "solution-challenge-869c1",
+    storageBucket: "solution-challenge-869c1.appspot.com",
+    messagingSenderId: "463908271523",
+    appId: "1:463908271523:web:6e0d09c32838836d531616"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+  const auth = getAuth();
+
+  let Login=document.getElementsByClassName("logedIn");
+  console.log(Login);
+
+Login[0].addEventListener('click',(e)=>{
+  e.preventDefault();
+
+  var email=document.getElementById('email').value;
+var password=document.getElementById('password').value;
+const dt=Date.now();
+
+    signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+
+
+console.log(database); 
+      window.location.assign("table.html");
+
+
+
+        
+       
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert(errorMessage);
+  });
+
+
+})
+const user = auth.currentUser;
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    const uid = user.uid;
+    // ...
+  } else {
+    // User is signed out
+    // ...
+  }
+});
+
+</script>
+</html>
