@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # NOWA
 
 The site has been deployed using netlify.
@@ -16,3 +17,6 @@ has an account that has been set up once all the information has been confirmed/
 The first two users can modify the status by controlling a table that lists the name of
 the company, its location, the type and name of food it is currently serving, and its
 availability. All other users may view the table so that they are aware of the system and are able to evaluate its legitimacy.
+=======
+# NOWA
+>>>>>>> 224069c85e1293e578597b6098778e1d689401c8
